@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div onclick="getImg('//cdn2.jianshu.io/assets/web/web-note-ad-side-banner-22096669b4c4b91c3b9266894e951aef.png')">test</div>
+<div onclick="getImg('./de.png')">test1</div>
+<!--<a href="http://y1.ifengimg.com/cmpp/2014/03/11/02/a034623a-1047-43f2-81f3-6e65524c5916.jpg" download="a034623a-1047-43f2-81f3-6e65524c5916.jpg">下载</a>-->
+<!--<a href="a034623a-1047-43f2-81f3-6e65524c5916.jpg" download="http://y1.ifengimg.com/cmpp/2014/03/11/02/a034623a-1047-43f2-81f3-6e65524c5916.jpg">下载</a>-->
+
+<script>
+    // 下载网络图片（前提：图片没有跨域访问限制）
+    function getImg(url) {
+        console.log(1)
+        let img = new Image()
+        img.onload = () => {
+            let canvas = document.createElement('canvas')
+            let context = canvas.getContext('2d')
+
+            canvas.width = img.width
+            canvas.height = img.height
+
+            context.drawImage(img, 0, 0, img.width, img.height)
+
+            let a = document.createElement('a')
+            a.download = 'test.png'
+            a.href = canvas.toDataURL()
+            a.click()
+        }
+        img.crossOrigin = "anonymous"
+        img.src = url
+    }
+</script>
+</body>
+</html>
