@@ -1,0 +1,36 @@
+.page-nav {
+  position: relative;
+  background: #fff;
+  padding-top: 30px;
+  text-align: center;
+  font-size: 14px;
+  border-bottom: 1px solid #e6e3e3;
+}
+.page-nav .item {
+  display: inline-block;
+  margin: 0 40px;
+  color: #333;
+  cursor: pointer;
+  padding-bottom: 10px;
+  border-bottom: 2px solid transparent;
+  transition: all .5s;
+}
+.page-nav .item .nav-children {
+  position: absolute;
+  background: #fff;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  z-index: 99;
+  top: 62px;
+  left: 0;
+  transition: ease-in-out 0.5s;
+}
+.page-nav .item:hover,
+.page-nav .item.active {
+  border-color: #007099;
+}
+.page-nav .item:hover .nav-children,
+.page-nav .item.active .nav-children {
+  height: 360px;
+}

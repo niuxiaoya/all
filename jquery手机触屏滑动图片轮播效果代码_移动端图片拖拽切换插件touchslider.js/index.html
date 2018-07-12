@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+	<title>瀑布流</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0}
+		#container{margin:0 auto;}
+		.topic {width:44vw; border:1px solid #ccc; border-radius:5px; padding:5px; box-shadow:5px 5px 5px #ccc; float:left; margin:5px;}
+		.topic img { width: 44vw;
+			height: 44vw;}
+	</style>
+	<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js">
+	<script type="text/javascript">
+        $(function(){
+
+            var conWidth=$("#container").innerWidth(),
+                toWidth=$(".topic").eq(0).outerWidth(),
+                cols=Math.floor(conWidth/toWidth),
+                spacing=(conWidth-toWidth*cols)/(cols+1);
+            var html="";
+            console.log(cols);
+            //向contaner容器中存放cols个列的盒子
+            for(var i=0;i<cols;i++){
+                html+="<div style='display:inline-block;vertical-align:top;width:"+toWidth+"px;margin-left:"+spacing+"px;'></div>"
+            }
+            var $conCols=$(html).appendTo("#container");
+            //遍历加载的图片
+            $(".topic").each(function(index,element){
+                var cur=index%cols;
+                $conCols.eq(cur).append(element);
+            });
+            //动态向页面添加图片
+            html="";
+            for(var i=16;i<56;i++){
+                html+="<div class='topic'><img src='img/"+i+".jpg'></div>";
+            }
+            $(html).each(function(index,element){
+                var cur=index%cols;
+                $conCols.eq(cur).append(element);
+            });
+        });
+	</script>
+</head>
+<body>
+<div id="container">
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p>  11111尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+		<p>  轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+	</div>
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p> 22歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+	</div>
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p>  33米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p><p>  轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+	</div>
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p>  11111尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+		<p>  轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+	</div>
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p> 22歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+	</div>
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p>  33米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p><p>  轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+	</div>
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p>  44歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p><p>  轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+	</div>
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p>  与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p><p>  轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家</p>
+	</div>
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p>
+			55龙米歇尔杨- 收藏家
+			评论（由WEE YONG提供）理查德·米勒RM51-01陀飞
+			轮虎与龙米歇尔杨- 收藏家
+		</p>
+		<p>
+			轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家
+		</p>
+	</div>
+	<div class="topic">
+		<img src="img/img_main_1.jpg">
+		<p>
+			66与龙米歇尔杨- 收藏家
+			评论（由WEE YONG提供）理查德·米勒RM51-01陀飞
+			轮虎与龙米歇尔杨- 收藏家
+		</p>
+		<p>
+			轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家 轮虎与龙米歇尔杨- 收藏家
+		</p>
+	</div>
+
+</div>
+</body>
+</html>

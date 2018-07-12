@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SWISSTIME 24H</title>
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <link rel="stylesheet" href="css/common/common.css">
+    <link rel="stylesheet" href="css/common/header.css">
+    <link rel="stylesheet" href="css/common/nav.css">
+    <link rel="stylesheet" href="css/index/index.css">
+    <link rel="stylesheet" href="css/alert/alert.css">
+    <link rel="stylesheet" href="css/index/banner.css">
+
+<body>
+<div id="box" :style="showLogin ? 'overflow:hidden;max-height:100vh;' : ''" v-cloak>
+    <div class="mark pos-absolute" v-if="showLogin">
+
+    </div>
+
+    <div class="markbox pos-absolute" v-if="showLogin">
+        <div class="login-head">
+            <p @click="showLogin=false">x</p>
+            <h3>登录</h3>
+        </div>
+        <div class="lo-input">
+            <input type="tel" placeholder="请输入手机号">
+        </div>
+        <div class="lo-input">
+            <input type="number" placeholder="6位验证码">
+        </div>
+        <p class="cdcode">获取验证码</p>
+        <button class="l-button">
+            登陆
+        </button>
+    </div>
+    <header>
+        <div class="header">
+            <div class="h-left">
+                <div>
+                    <icon></icon>
+                    <p>购买记录</p>
+                </div>
+                {{ value }}
+                <model-select v-model="value" :seltext="options[0].label" :option="options"></model-select>
+                {{ value1 }}
+                <model-select :value='value1' :seltext="options[0].label" :option="options"></model-select>
+                <!--<el-select v-model="value1" placeholder="中文简体">
+                    <el-option
+                            v-for="item in options1"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>-->
+                <!--<select name="" id="">-->
+                <!--<option>中文简体</option>-->
+                <!--<option>繁体中文</option>-->
+                <!--<option>English</option>-->
+                <!--<option>Deutsch</option>-->
+                <!--<option>Français</option>-->
+                <!--</select>-->
+            </div>
+            <div class="h-right">
+                <span class="pointer">APP应用下载</span>
+                <span class="pointer" @click="alertLogin">欢迎来SWISS TIME 24H,登陆</span>
+                <div>
+                    <input type="text">
+                    <icon></icon>x
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="page-nav">
+        <a class="item active" href="/v1">首页</a>
+        <div class="item" >
+            腕表品牌
+
+            <div class="nav-children">
+                111111111111111111111
+            </div>
+        </div>
+
+        <div class="item">
+            SWISS TIME 24H
+            <div class="nav-children">
+                222222222222222222
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-one">
+        <!--swiper banner轮播图-->
+        <div class="banner">
+            <el-carousel trigger="click" height="500px">
+                <el-carousel-item v-for="item in 4" :key="item">
+                    <img src="./image/test.jpg">
+                </el-carousel-item>
+            </el-carousel>
+        </div>
+        <div class="main container">
+            <div class="index-market">
+                <div class="mar-left">
+                    <img src="./image/test.jpg">
+                </div>
+                <div class="mar-right">
+                    <h3 class="top">
+                        优惠腕表
+                    </h3>
+                    <ul class="bottom">
+                        <li v-for="item in 3">
+                            <img src="./image/ly.jpg">
+                            <p class="text-nobr mark-content">
+                                所谓虎丘地区唯一的
+                            </p>
+                            <p class="mark-moeny">
+                                法国热死杨贵妃rue <span>（9.9折）</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="market-banner">
+                <img src="./image/test.jpg">
+                <h3>2018年新款上架</h3>
+                <p class="market-shop">立即购物></p>
+            </div>
+            <div class="market-banner">
+                <img src="./image/test.jpg">
+                <h3>2018年新款上架</h3>
+                <p class="market-shop">立即购物></p>
+            </div>
+        </div>
+    </div>
+    <div class="main-two">
+        <!--卖表-->
+        <div class="main container">
+            <div class="market-list">
+                <div class="ma-head">
+                    <h3 class="mh-title">最新腕表</h3>
+                    <p>立即购物</p>
+                </div>
+                <ul class="me-content">
+                    <li v-for="item in 8">
+                        <div class="me-bbox">
+                            <img src="./image/ly.jpg">
+                            <p class="text-nobr mark-content">
+                                所谓虎丘地区唯一的
+                            </p>
+                            <p class="mark-moeny">
+                                HK$1000
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="market-list">
+                <div class="ma-head">
+                    <h3 class="mh-title">最新腕表</h3>
+                    <p>立即购物</p>
+                </div>
+                <ul class="me-content">
+                    <li v-for="item in 8">
+                        <div class="me-bbox">
+                            <img src="./image/ly.jpg">
+                            <p class="text-nobr mark-content">
+                                所谓虎丘地区唯一的
+                            </p>
+                            <p class="mark-moeny">
+                                HK$1000
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-one">
+        <div class="main">
+            <div class="index-market">
+                <div class="mar-right">
+                    <h3 class="top">
+                        优惠腕表
+                    </h3>
+                    <ul class="bottom">
+                        <li v-for="item in 3">
+                            <img src="./image/ly.jpg">
+                            <p class="text-nobr mark-content">
+                                所谓虎丘地区唯一的
+                            </p>
+                            <p class="mark-moeny">
+                                法国热死杨贵妃rue <span>（9.9折）</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mar-left mar-left1">
+                    <img src="./image/test.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<div v-loading="loading" element-loading-text="加载中" style="width: 100%;height: 100px"></div>-->
+    <!--<div class="main">-->
+    <!--<div class="index-main">-->
+    <!--<div class="index-market" v-for="item in data">-->
+    <!--<img :src="item.img" alt="">-->
+    <!--<p class="col-333">{{item.title}}</p>-->
+    <!--<p class="col-999 text-nobr">{{item.content}}</p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<el-pagination-->
+    <!--v-if="pagecount>1"-->
+    <!--layout="prev,pager,next"-->
+    <!--@current-change="handlerPage"-->
+    <!--:page-count="pagecount"-->
+    <!--&gt;-->
+    <!--</el-pagination>-->
+    <p @click="NTKF.im_openInPageChat('kf_10178_1522134627517')" style ="height:70px;margin-left:42%;margin-top:80px;width:250px;">客服</p>
+    <footer>
+        <div class="f-top">
+            <img src="./image/ly.jpg">
+        </div>
+        <div class="f-center">
+            <div>
+                联系我们
+            </div>
+            <div>
+                手机应用下载
+            </div>
+        </div>
+        <div class="f-bottom">
+            <div>
+                <div>
+            <span>
+                <img src="./image/ly.jpg" alt="">
+                联系电话：400-8451-816
+            </span>
+                    <span>
+                <img src="./image/ly.jpg" alt="">
+                联系电话：400-8451-816
+            </span>
+                    <span>
+                <img src="./image/ly.jpg" alt="">
+                联系电话：400-8451-816
+            </span>
+                </div>
+                <div>
+                    <span>尺寸建议</span>
+                    <span>尺寸建议</span>
+                    <span>尺寸建议</span>
+                </div>
+                <div>
+                    <span>尺寸建议</span>
+                    <span>尺寸建议</span>
+                    <span>尺寸建议</span>
+                </div>
+            </div>
+            <div>
+                <div>11</div>
+                <div>1</div>
+            </div>
+        </div>
+        <div class="f-foot">2018瑞时会版权所有</div>
+    </footer>
+</div>
+
+<script src="js/code/code.js"></script>
+<script>
+    NTKF_PARAM = {
+        siteid:"kf_10178",                    //企业ID，为固定值，必填
+        settingid:"kf_10178_1522134627517",    //接待组ID，为固定值，必填
+        uid:"7869533",                              //用户ID，未登录可以为空，但不能给null，uid赋予的值在显示到小能客户端上
+        uname:"小能李小博",                            //未登录可以为空，但不能给null，uname赋予的值显示到小能客户端上
+        isvip:"0",                           //是否为vip用户，0代表非会员，1代表会员，取值显示到小能客户端上
+        userlevel:"1",                       //网站自定义会员级别，0-N，可根据选择判断，取值显示到小能客户端上
+
+
+
+    }
+</script>
+
+
+<script type="text/javascript" src="http://dl.ntalker.com/js/xn6/ntkfstat.js?siteid=kf_10178" charset="utf-8"></script>
+<script src="/static/js/model-select.js"></script>
+
+<script>
+    new Vue({
+        el: '#box',
+        data() {
+            return {
+                loading: false,
+                imageUrl: '',
+                showLogin: false,
+                show: false,
+                show1: false,
+                options: [
+                    {
+                        value: '选项1',
+                        label: '黄金糕'
+                    }, {
+                        value: '选项2',
+                        label: '双皮奶'
+                    }, {
+                        value: '选项3',
+                        label: '蚵仔煎'
+                    }, {
+                        value: '选项4',
+                        label: '龙须面'
+                    }, {value: '选项5', label: '北京烤鸭'}
+                ],
+                options1: [
+                    {
+                        value: '选项1',
+                        label: '中文简体'
+                    }, {
+                        value: '选项2',
+                        label: '繁体中文'
+                    }, {
+                        value: '选项3',
+                        label: 'English'
+                    }, {
+                        value: '选项4',
+                        label: 'Deutsch'
+                    }, {
+                        value: '选项5',
+                        label: 'Français'
+                    }
+                ],
+                value: '',
+                value1: '',
+                pagecount: 10,
+                data: [
+                    {
+                        img: '/static/image/ly.jpg',
+                        title: '111',
+                        content: '我不是表分污染负荷一句我给孕妇认为好的一个恶恶有股测的无缝的业务辅导瑞特服务哟古额我应该的个单位'
+                    },
+                    {img: '/static/image/ly.jpg', title: '111', content: '我不是表'},
+                    {img: '/static/image/ly.jpg', title: '111', content: '我不是表'},
+                    {img: '/static/image/ly.jpg', title: '111', content: '我不是表'},
+                    {img: '/static/image/ly.jpg', title: '111', content: '我不是表'},
+                    {img: '/static/image/ly.jpg', title: '111', content: '我不是表'},
+                ],
+            }
+        },
+        mounted() {
+            setTimeout(() => {
+                this.loading = false;
+
+            }, 3000);
+            //setInterval(() => {
+            // max - 期望的最大值
+//                parseInt(Math.random()*(max-min+1)+min,10);
+//                Math.floor(Math.random()*(max-min+1)+min);
+            // console.log(Math.floor(Math.random()*(100000000-10000000+1)+10000000));
+//                console.log(Math.random())
+            //},1000);
+            this.$message.error(errcode[40001])
+        },
+        methods: {
+            handlerPage(val) {
+                if (val > 0 && val <= this.pagecount) {
+                    this.getList(val)
+                }
+            },
+            alertLogin() {
+                this.showLogin = true;
+            },
+//        /**
+//         * 获取记录列
+//         * 参数 p: 页码
+//         * */
+            getList() {
+                let datas = [];
+                let rows = 7;  //  每页要显示的条数
+                for (let k = 0; k < rows; k++) {
+                    datas.push({
+                        img: '/static/image/ly.jpg',
+                        title: Math.floor(Math.random() * 100000000),
+                        content: '哈哈哈',
+                    })
+                }
+
+                this.data = datas
+            },
+        }
+    })
+</script>
+</body>
+</html>

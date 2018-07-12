@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/vue.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?11dbc6d9c53936a5f5a68eec3bbbd6b7";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+   <div id="app">
+       <header class="header">
+           <div class="content">
+               <img src="./img/logo.png">
+               <ul class="top">
+                   <li v-for="i,key in data" :pos="`#nav${key+1}`" onclick="goto(this)">
+                       <a style="cursor: pointer">{{i.cont}}</a>
+                   </li>
+               </ul>
+           </div>
+       </header>
+       <div class="banner" id="nav1" style="margin-top: 108px">
+           <img src="./img/1.png" alt="">
+       </div>
+       <section class="section" id="nav2">
+            <div class="tit">
+                平台优势
+            </div>
+           <div class="transaction">
+               <div class="img">
+                   <img :src="i.img" alt="" :class="{active:tabNum==key}" @click="tabClick(i)"
+                        v-for="i,key in transaction" class="img">
+               </div>
+               <p style="padding-top: 90px;font-size: 16px;color: #333">{{tit}}</p>
+               <p style="color: #999;padding-top: 20px">{{content}}</p>
+           </div>
+
+       </section>
+       <div class="banner" id="nav3">
+           <img src="./img/2.png" alt="">
+       </div>
+
+       <section class="section2" id="nav4">
+           <div class="tit">
+               联系我们
+           </div>
+           <div class="auoutUs">
+               <div class="left">
+                   <img :src="img" alt=""  >
+               </div>
+               <div class="detail">
+                   <div v-for="i,key in aboutUs" @click="tab(i,key)" :class="{active1:tabNum1==key}">
+                       <p style="color: #333">{{i.tit}}</p>
+                       <p>地址：{{i.add}}</p>
+                       <p>联系电话：{{i.tel}}</p>
+                       <p>营业时间：上午10：00-下午7：00</p>
+                   </div>
+                   <img src="./img/bottom.png" alt="" class="bottom" @click="look()" style="cursor: pointer">
+                   <!--<img src="./img/top.png" alt="" class="top" @click="">-->
+
+               </div>
+           </div>
+       </section>
+       <footer>
+            <p>瑞时会网络科技（深圳）有限公司 地址：福田区平安大厦73楼  座机：400-8451-816</p>
+            <p> 粤ICP备17150951号-2 </p>
+       </footer>
+
+   </div>
+    <script>
+        function goto(ele) {
+            console.log($(ele).attr('pos'))
+            $('body, html').animate({scrollTop: $($(ele).attr('pos')).offset().top}, 1000)
+            $(ele).children('a').addClass('active').end().siblings('li').children('a').removeClass('active')
+        }
+
+        new Vue({
+            el:'#app',
+            data:{
+                tabNum:0,
+                tabNum1:0,
+                data: [
+                    {
+                        id:'nav1',
+                        cont:'公司介绍'
+                    },
+                    {
+                        id:'nav2',
+                        cont:'平台优势'
+                    },
+                    {
+                        id:'nav3',
+                        cont:'APP下载'
+                    },
+                    {
+                        id:'nav4',
+                        cont:'联系我们'
+                    },
+                ],
+                transaction:[
+                    {
+                        img: './img/icon1.png',
+                        content:'瑞时会·中国，卖家腕表可交由平台估价，系统按腕表市场交易数\n' +
+                        '据计算出区间售价；卖家可自主决定腕表售价，买家选择腕表，\n' +
+                        '全程由平台客服提供专业的腕表咨询服务，无中间商赚差价，搭\n' +
+                        '建透明专业顶级腕表交易平台',
+                        tit:'C2C交易 价格有优势'
+                    },
+                    {
+                        img: './img/icon2.png',
+                        content:"瑞时会·中国与瑞士国际钟表评估管理中心IWAM达成长期合作，\n" +
+                        "平台交易所有腕表皆需通过IWAM国际权威鉴定测评师检验真伪，\n" +
+                        "并加注IWAM认证标签，确保平台所售腕表正品保障。",
+                        tit:'国际权威机构鉴定 保障正品'
+                    },
+                    {
+                        img: './img/icon3.png',
+                        content:"瑞时会·中国对在平台成功购买的腕表，提供2年的售后保养、维\n" +
+                        "修服务，买家更放心。",
+                        tit:'专业售后服务 购买无忧'
+                    },
+                    {
+                        img: './img/icon4.png',
+                        content:"瑞时会·中国支持多种支付方式，可自由组合支付，包括银行转账、\n" +
+                        "线上支付、信用卡POS机支付等，并且委托银行对交易资金进行\n" +
+                        "监，买家只有支付完结，平台才交付腕表，确保卖家全额收款。",
+                        tit:'支付方式灵活 资金安全'
+                    },
+                ],
+                content:'',
+                tit:'',
+                aboutUs:[
+                    {
+                        img:'./img/sz.png',
+                        tit:'深圳国际会所',
+                        add:'深圳市福田区福华一路平安金融中心73楼',
+                        tel:'+86 755-82714312',
+                    },
+                    {
+                        img:'./img/am.png',
+                        tit:'澳门国际会所',
+                        add:'澳门南湾湖景大马路818号财神商业中心7楼F',
+                        tel:'+853 28452038',
+                    },
+                    {
+                        img:'./img/xg.png',
+                        tit:'香港国际会所',
+                        add:'香港九龙红磡都会道10号，都会大厦12楼06室 ',
+                        tel:'+852 23117588',
+                    },
+                    {
+                        img:'./img/bj.png',
+                        tit:'北京国际会所',
+                        add:'北京市朝阳区建国路79号华贸中心B座9层',
+                        tel:'010-52896470',
+                    },
+                    {
+                        img:'./img/sh.png',
+                        tit:'上海国际会所',
+                        add:'上海市黄浦区淮海中路300号香港新世界大厦47楼SUITE28',
+                        tel:'021-51162877',
+                    },
+                ],
+                img:'',
+                num:Number(0)
+            },
+            methods:{
+                tabClick(item){
+                    this.content=item.content;
+                    this.tit=item.tit;
+                },
+                tab(item,key){
+                    this.img=item.img;
+                    this.tabNum1 = key;
+                    this.num=item*117
+                },
+                look(){
+                    this.num++
+                    if(this.num>4){
+                        $(".detail").animate({marginTop:(0)+'px'});
+                        this.num=0
+
+                        this.img=this.aboutUs[this.num].img
+                        this.tabNum1=this.num
+                    }else{
+                        $(".detail").animate({marginTop:(-175*this.num)+'px'});
+
+                        this.img=this.aboutUs[this.num].img
+
+                        this.tabNum1=this.num
+                    }
+                }
+            },
+            mounted(){
+                $('.top>li').first().children('a').addClass('active')
+                this.content=this.transaction[0].content
+                this.img=this.aboutUs[0].img
+                this.tit=this.transaction[0].tit
+            }
+        })
+    </script>
+</body>
+</html>

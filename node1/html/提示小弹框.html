@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /** 提示小弹窗 */
+    export default {
+        install: (Vue, options) => {
+            Vue.prototype.$message = {
+                success (msg) {
+                    let tpl = Vue.extend({
+                        template: '<div class="rs-message success">'+msg+'</div>'
+                    })
+
+                    let node = new tpl().$mount().$el
+                    document.body.appendChild(node)
+                    setTimeout(function () {
+                        document.body.removeChild(node)
+                    }, 2500)
+                },
+                error (msg) {
+                    let tpl = Vue.extend({
+                        template: '<div class="rs-message error">'+msg+'</div>'
+                    })
+                    let node = new tpl().$mount().$el
+                    document.body.appendChild(node)
+                    setTimeout(function () {
+                        document.body.removeChild(node)
+                    }, 2500)
+                }
+            }
+        }
+    }
+
+
+    //  xmlhttprequest 封装
+    var ajax = function AJAX(data) {
+        var xhr = null;
+        if(window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+        } else {
+            try{
+                xhr = new ActiveXObject('Microsoft.XMLHttp');
+            }catch(e){
+                xhr = new ActiveXObject('msxml2.xmlhttp');
+            }
+        }
+        //get请求
+        if(data.type == 'get') {
+            xhr.open("GET", data.url,true);
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4) {
+                    if(xhr.status==200) {
+                        data.success(xhr.responseText);
+                    } else {
+                        if(data.fail) {
+                            data.fail(xhr.status);
+                        }
+                    }
+                }
+            };
+            xhr.send(null);
+        }else if(data.type == 'post') {
+            //post请求
+            xhr.open("POST", data.url,true);
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4) {
+                    if(xhr.status==200) {
+                        data.success(xhr.responseText);
+                    } else {
+                        if(data.fail) {
+                            data.fail(xhr.status);
+                        }
+                    }
+                }
+            };
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send(data.data);
+        }
+    };
+
+
+    //node 简单起个服务
+    var http = require('http')
+    var fs = require('fs')
+    var documentRoot = 'E:/fanndytang.github.io/server/www'
+
+    http.createServer(function(req,res){
+        var url = req.url
+        var file = documentRoot + url
+
+        fs.readFile( file , function(err,data){
+            /*
+                一参为文件路径
+                二参为回调函数
+                    回调函数的一参为读取错误返回的信息，返回空就没有错误
+                    二参为读取成功返回的文本内容
+            */
+            if(err){
+                res.writeHeader(404,{
+                    'content-type' : 'text/html;charset="utf-8"'
+                })
+                res.write('404错误,你要找的页面不存在')
+                res.end()
+            }else{
+                res.writeHeader(200,{
+                    'content-type' : 'text/html;charset="utf-8"'
+                })
+                res.write(data);//将index.html显示在客户端
+                res.end()
+            }
+        })
+    }).listen(8085)
+</script>
+</body>
+</html>

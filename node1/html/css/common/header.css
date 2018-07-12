@@ -1,0 +1,119 @@
+header {
+  background: #fff;
+}
+header .header {
+  max-width: 1180px;
+  padding: 0 10px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  line-height: 30px;
+  height: 67px;
+  background: #fff;
+}
+.h-left {
+  display: flex;
+}
+.h-left > div {
+  margin-right: 8px;
+}
+.h-left select {
+  width: 84px;
+  display: inline-block;
+  height: 30px;
+  border: none;
+  margin-right: 8px;
+}
+.h-left .el-input {
+  border: none;
+  width: 150px;
+}
+.h-left .el-input input {
+  border: none;
+  height: 30px;
+}
+.h-left .selected {
+  background: #f5f7fa!important;
+}
+.h-left .selected span {
+  color: #ccc;
+}
+.h-right {
+  display: flex;
+}
+footer {
+  width: 100%;
+  height: 360px;
+  background: #333;
+}
+.f-top {
+  height: 145px;
+  text-align: center;
+}
+.f-top img {
+  width: 200px;
+  height: 70px;
+  padding-top: 40px;
+  display: block;
+  margin: 0 auto;
+}
+.f-center,
+.f-bottom {
+  font-size: 14px;
+  max-width: 1160px;
+  padding: 0 10px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  color: #fefefe;
+  font-weight: 500;
+}
+.f-center {
+  padding-bottom: 30px;
+}
+.f-center > div {
+  flex: 1.5;
+}
+.f-center > div:last-child {
+  flex: 1;
+}
+.f-bottom {
+  padding-bottom: 40px;
+  font-weight: 400;
+  color: #ccc;
+  font-size: 13px;
+}
+.f-bottom > div,
+.f-bottom > div > div {
+  display: flex;
+  padding-right: 100px;
+}
+.f-bottom > div > div > div:last-child,
+.f-bottom > div > div > div > div:last-child {
+  padding-right: 0;
+}
+.f-bottom > div span,
+.f-bottom > div > div span {
+  padding-top: 10px;
+}
+.f-bottom > div {
+  flex: 1.5;
+  padding-right: 0;
+}
+.f-bottom > div:last-child {
+  flex: 1;
+}
+.f-bottom > div > div {
+  flex-direction: column;
+}
+.f-bottom img {
+  width: 12px;
+  height: 12px;
+}
+.f-foot {
+  border-top: 1px solid #424242;
+  text-align: center;
+  color: #999;
+  line-height: 40px;
+}

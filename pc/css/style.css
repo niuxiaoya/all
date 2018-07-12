@@ -1,0 +1,123 @@
+.header{
+    width: 100%;
+    height: 108px;
+    box-sizing: border-box;
+    background: #030609;
+    position: fixed;
+    top: 0;
+}
+.content{
+    margin: 0 auto;
+    width: 1024px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.top {
+    color: #fff;
+    display: flex;
+}
+.top a{
+    color: #fff;
+    margin-right: 45px;
+    display: inline-block;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+.active{
+    border-bottom: 3px solid #fff;
+}
+.banner{
+    width: 100%;
+}
+.banner img{
+    width: 100%;
+    height: auto;
+    min-width: 1024px;
+}
+.tit{
+    font-size: 32px;
+    text-align: center;
+    color: #333;
+    line-height: 260px;
+}
+.section{
+    width: 1024px;
+    margin: 0 auto;
+}
+.transaction{
+    padding-bottom: 220px;
+}
+.img{
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    object-fit: cover;
+}
+.img img{
+    width: 230px;
+}
+.transaction p{
+    text-align: center;
+}
+.section2{
+    background: url("../img/3.png") no-repeat center;
+    padding-bottom: 150px;
+}
+
+.section2 .tit{
+    line-height: 190px;
+    padding-top: 30px;
+    color: #fff;
+}
+.left{
+    width: 760px;
+}
+.left img{
+    width: 100%;
+}
+.auoutUs{
+    position: relative;
+    display: flex;
+    width: 1024px;
+    margin: 0 auto;
+    height: 428px;
+    overflow: hidden;
+}
+.detail{
+    flex: 1;
+}
+.detail div{
+    padding: 35px 15px;
+    background: #fff;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.detail .active1{
+    background: #ccecff;
+}
+.detail img{
+    position: absolute;
+    right: 120px;
+}
+.detail .bottom{
+    bottom: 20px!important;
+}
+.detail p{
+    color: #666666;
+}
+.detail .top{
+    top: 20px!important;
+}
+
+footer{
+    background: #101115;
+    height: 85px;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    color: #999;
+}

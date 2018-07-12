@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+</head>
+<body>
+<div id="root"></div>
+
+
+<script type="text/babel">
+    class ListMain extends React.Component {
+        constructor(props) {
+            super(props)
+
+            this.data = props.data || []
+        }
+
+        add() {
+            console.log('add')
+        }
+
+        render() {
+            let button = ''
+            if(this.props.model.config.add) {
+                button = <button className="btn btn-primary btn-sm" onClick={this.add}>新增</button>
+            }
+            return (
+                    <div>
+                        <div className="btns">
+                            {button}
+                        </div>
+
+                        <table>
+                            <thead><tr>{this.props.column.map((item, i) => {return <th key={i}>{item.label}</th>})}</tr></thead>
+
+                            <tbody>{this.data.map((item,i) => {return (<tr key={i}>{this.props.column.map((el, k) => {return <td key={k}>{item[el.prop]}</td>})}</tr>)})}</tbody>
+                        </table>
+                    </div>
+            )
+        }
+    }
+</script>
+
+<script type="text/babel">
+    const column = [
+        {prop: 'id', label: 'ID'},
+        {prop: 'name', label: '名称'},
+        {prop: 'tag', label: '标签'}
+    ]
+
+    const data =  [
+        {id: '1', name: 'eag', tag: 'ewtqe'},
+        {id: '2', name: 'eag', tag: 'ewtqe'},
+        {id: '3', name: 'eag', tag: 'ewtqe'},
+        {id: '4', name: 'eag', tag: 'ewtqe'}
+    ]
+
+    let model = {
+        config: {
+            add: true
+        }
+    }
+
+    ReactDOM.render(
+        <ListMain data={data} model={model} column={column}></ListMain>,
+        document.getElementById('root')
+    )
+</script>
+</body>
+</html>
